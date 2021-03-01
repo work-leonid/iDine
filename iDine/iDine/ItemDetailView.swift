@@ -42,6 +42,8 @@ struct ItemDetailView: View {
 
 struct ItemDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ItemDetailView(item: MenuItem.example).environmentObject(Order())
+        NavigationView {
+            ItemDetailView(item: MenuItem.example).environmentObject(Order())
+        }
     }
 }
