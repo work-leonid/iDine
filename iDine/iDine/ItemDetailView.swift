@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct ItemDetailView: View {
+    
     let item: MenuItem
+    @EnvironmentObject var order: Order
+    
     var body: some View {
         VStack {
             ZStack(alignment: .bottomTrailing) {
@@ -23,6 +26,13 @@ struct ItemDetailView: View {
                     .offset(x: -5, y: -5)
             }
             Text(item.description)
+            
+            Button("Add to order") {
+                order.add(item: item)
+            }
+            .font(.headline)
+            .padding()
+            
             Spacer()
         }
         .navigationBarTitle(item.name)
@@ -32,6 +42,6 @@ struct ItemDetailView: View {
 
 struct ItemDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ItemDetailView(item: MenuItem.example)
+        ItemDetailView(item: MenuItem.example).environmentObject(Order())
     }
 }
